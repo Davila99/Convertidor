@@ -1,52 +1,52 @@
 
 //Declaraciones de Variables
-
+var salida:String="";
 var cantidadConvertir :Double=0.00;
 var opcionDeConversion : Int =0;
 var resultadoConversion : Double=0.00;
+var MilemetrosACemtimetros:String="mm -> cm";
+var MilemetrosAMetros:String="mm -> mt";
+var MilemetrosAkilometros:String="mm -> km";
+var centimetrosAMilimetros:String="mm -> km";
+var metrosAMilimetros:String="mm -> km";
+var kilometrosAMilimetros:String="mm -> km";
 
  //Declaraciones de Funciones
 
 fun convertidorMMaCM(){
     PedirDatosDeConversion();
     resultadoConversion = cantidadConvertir / 10;
-    println("Tu resultado de la conversion de mm -> cm es de: $resultadoConversion Centimetros" );
+    imprimirResultados();
+
 }
 fun convertidorMMaMT(){
     PedirDatosDeConversion();
     resultadoConversion = cantidadConvertir / 1000;
-    println("Tu resultado de la conversion de mm -> mt es de: $resultadoConversion Metros" );
+    imprimirResultados();
+
 }
 fun convertidorMMaKM(){
     PedirDatosDeConversion();
     resultadoConversion = cantidadConvertir / 1000000;
-    println("Tu resultado de la conversion de mm -> km es de: $resultadoConversion Kilometros" );
+    imprimirResultados();
+
 }
 fun convertidorCMaMM(){
     PedirDatosDeConversion();
     resultadoConversion = cantidadConvertir * 10;
-    println("Tu resultado de la conversion de cm -> mm es de: $resultadoConversion Milimetros" );
+    imprimirResultados();
+
 }
 fun convertidorMTaMM(){
     PedirDatosDeConversion();
     resultadoConversion = cantidadConvertir * 1000;
-    println("Tu resultado de la conversion de mt -> mm es de: $resultadoConversion Milimetros" );
+    imprimirResultados();
+
 }
 fun convertidorKMaMM(){
     PedirDatosDeConversion();
     resultadoConversion = cantidadConvertir * 1000000;
-    println("Tu resultado de la conversion de km -> mm es de: $resultadoConversion Milimetros" );
-}
-
-fun main(){
-    var salida:String="";
-
-    do {
-    principal();
-
-        println("Desea Continuar S/N");
-        salida = readLine().toString();
-    }while (salida=="S" ||salida =="s")
+    imprimirResultados();
 
 }
 
@@ -55,13 +55,37 @@ fun PedirDatosDeConversion(){
     cantidadConvertir = readLine()!!.toDouble();
 }
 
-fun principal(){
-    println("----------Convertidor de Unidades-------");
-    println(" 1. mm -> cm\n 2. mm -> mt\n 3. mm -> km\n 4. cm -> mm\n 5. mt -> mm\n 6. km -> mm");
-    println();
+fun inputcontinuar(){
+    println("Desea Continuar S/N");
+    salida = readLine().toString();
+}
+
+fun opcionAConvertir(){
     println("Eliga la Opcion a Convertir");
     opcionDeConversion = readLine()!!.toInt();
+}
 
+fun outputContinuar() :Boolean{
+    return  salida=="S" ||salida =="s";
+}
+
+fun imprimirResultados(){
+    println("El resultado de $cantidadConvertir en la conversion de mm -> cm es de: $resultadoConversion Centimetros" );
+}
+
+fun main(){
+    do {
+    principal();
+    inputcontinuar()
+    }while (outputContinuar())
+
+}
+
+fun principal(){
+    println("----------Convertidor de Unidades-------");
+    println(" 1. $MilemetrosACemtimetros\n 2. $MilemetrosAMetros\n 3. $MilemetrosAkilometros\n 4. $centimetrosAMilimetros\n 5. $metrosAMilimetros\n 6. $kilometrosAMilimetros");
+    println();
+    opcionAConvertir();
     when(opcionDeConversion){
         1->convertidorMMaCM();
         2->convertidorMMaMT();
@@ -69,7 +93,6 @@ fun principal(){
         4->convertidorCMaMM();
         5->convertidorMTaMM();
         6->convertidorKMaMM();
-
         else->{
             println("Opcion Incorrecta");
         }
